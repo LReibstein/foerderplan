@@ -94,14 +94,21 @@ input:focus,select:focus{outline:none;border-color:var(--navy)}
 .grp-cnt{margin-left:auto;font-size:11px;color:var(--gold);font-weight:600}
 .tag-grp .tag-list{padding:0 13px 13px}
 .tag-subs .tag-list{padding:0 13px 12px}
+.tag-groups > .tag-subs .tag-sub-hd{padding:2px 0 7px}
+.tag-groups > .tag-subs .tag-list{padding:0 0 12px}
 .tag-sub-hd{display:flex;align-items:center;gap:8px;padding:2px 13px 7px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .tag-sub-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+.fg.missing select,.fg.missing input{border-color:#C0504D;box-shadow:0 0 0 2px rgba(192,80,77,.25)}
+.fg.missing::after{content:attr(data-msg);font-size:11px;font-weight:600;color:#B03A3A}
+.tag-sec.missing{outline:2px solid #C0504D;outline-offset:6px;border-radius:6px}
+.tag-sec.missing .tag-sec-hd::after{content:'Bitte mindestens einen Baustein wählen';margin-left:4px;font-size:11px;font-weight:600;color:#B03A3A}
 .custom-add{display:flex;gap:7px;margin-top:10px}
 .custom-add input{flex:1;min-width:0;font-size:13px;padding:7px 11px;border-style:dashed}
 .custom-add input:focus{border-style:solid}
 .custom-add button{background:#fff;border:1.5px solid var(--gold);color:var(--gold);border-radius:7px;padding:0 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}
 .custom-add button:hover{background:var(--gold);color:#fff}
 .field-note{font-size:11px;color:var(--muted);min-height:15px}
+.fg.missing .field-note:empty{display:none}
 .field-note b{color:var(--navy);font-weight:600}
 .divider{height:1px;background:var(--border);margin:16px 0}
 .empty-hint{text-align:center;padding:28px 16px;color:var(--muted)}
@@ -195,6 +202,9 @@ input:focus,select:focus{outline:none;border-color:var(--navy)}
 .brk input:checked + .sw::after{transform:translateX(17px)}
 .brk input:focus-visible + .sw{outline:2px solid var(--navy);outline-offset:2px}
 
+/* ── VERSION ── */
+.app-version{font-size:11px;color:var(--muted);text-align:center;margin:4px 0 8px}
+
 /* ── BOTTOM BAR ── */
 .btm-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:11px 22px calc(11px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center;gap:12px;z-index:90;box-shadow:0 -4px 18px rgba(0,0,0,.07)}
 .btn-pdf{background:var(--navy);color:#fff;border:none;padding:11px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px;transition:background .15s}
@@ -236,7 +246,7 @@ input:focus,select:focus{outline:none;border-color:var(--navy)}
 
     <!-- Schülerdaten -->
     <div class="card">
-      <div class="card-head"><div class="card-num">1</div><div class="card-title">Schüler- &amp; Lehrkraft-Daten</div></div>
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">Schüler/innen- und Lehrkraft-Daten</div></div>
       <div class="card-body">
         <div class="field-grid">
           <div class="fg"><label for="vorname">Vorname</label><input id="vorname" type="text" placeholder="z.B. Max"></div>
@@ -259,24 +269,42 @@ input:focus,select:focus{outline:none;border-color:var(--navy)}
             <label for="ns">Note schriftlich</label>
             <select id="ns">
               <option value="">– wählen –</option>
-              <option value="1">1 – sehr gut</option>
-              <option value="2">2 – gut</option>
-              <option value="3">3 – befriedigend</option>
-              <option value="4">4 – ausreichend</option>
-              <option value="5" selected>5 – mangelhaft</option>
-              <option value="6">6 – ungenügend</option>
+              <option value="1">1</option>
+              <option value="1-">1-</option>
+              <option value="2+">2+</option>
+              <option value="2">2</option>
+              <option value="2-">2-</option>
+              <option value="3+">3+</option>
+              <option value="3">3</option>
+              <option value="3-">3-</option>
+              <option value="4+">4+</option>
+              <option value="4">4</option>
+              <option value="4-">4-</option>
+              <option value="5+">5+</option>
+              <option value="5">5</option>
+              <option value="5-">5-</option>
+              <option value="6">6</option>
             </select>
           </div>
           <div class="fg">
             <label for="nm">Note mündlich</label>
             <select id="nm">
               <option value="">– wählen –</option>
-              <option value="1">1 – sehr gut</option>
-              <option value="2">2 – gut</option>
-              <option value="3">3 – befriedigend</option>
-              <option value="4" selected>4 – ausreichend</option>
-              <option value="5">5 – mangelhaft</option>
-              <option value="6">6 – ungenügend</option>
+              <option value="1">1</option>
+              <option value="1-">1-</option>
+              <option value="2+">2+</option>
+              <option value="2">2</option>
+              <option value="2-">2-</option>
+              <option value="3+">3+</option>
+              <option value="3">3</option>
+              <option value="3-">3-</option>
+              <option value="4+">4+</option>
+              <option value="4">4</option>
+              <option value="4-">4-</option>
+              <option value="5+">5+</option>
+              <option value="5">5</option>
+              <option value="5-">5-</option>
+              <option value="6">6</option>
             </select>
           </div>
         </div>
@@ -316,6 +344,7 @@ input:focus,select:focus{outline:none;border-color:var(--navy)}
       </div>
     </div>
 
+    <div class="app-version">Version 3.1 · Stand 07.11.2026</div>
   </div>
 
   <!-- ═══ PREVIEW COLUMN ═══ -->
@@ -771,6 +800,35 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 const SUBJECTS = {
   mathematik: {
     label: 'Mathematik',
+    // zusätzliche Empfehlungen, die nur bei Mathematik erscheinen
+    empf: {
+      schule: ['Teilnahme an der Matheinsel.'],
+      eigen: [
+        'die „Bist-du-fit“-Aufgaben im Mathematikbuch eigenständig bearbeiten und kontrollieren.',
+        'in den Arbeits- oder Vertretungsstunden die Arbeitsaufträge Mathematik sorgfältig bearbeiten.',
+        'regelmäßig das formale Arbeiten mit Variablen, Termen und Gleichungen wiederholen und üben.',
+        'aufgetretene Wissenslücken durch eigenes Wiederholen schließen, z.B. mit dem zum Thema passenden Heft der Reihe „Diagnostizieren und Fördern“ vom Cornelsen Verlag.',
+        'zusätzliche Rechenaufgaben rechnen und der Lehrkraft zum Sichten vorlegen.',
+      ],
+      // eigene Unterüberschriften innerhalb der Textbausteine
+      sub: {
+        eigen: {
+          'GTK': [
+            'die Wochenpläne gründlich bearbeiten.',
+            'sich in der Lernwerkstatt mehr Zeit für Mathematik nehmen.',
+          ],
+        },
+      },
+    },
+    // zusätzliche überfachliche Kategorie, die nur bei Mathematik erscheint
+    ueberfachlich: {
+      'GTK': [
+        'bearbeitet den Wochenplan nicht gründlich genug.',
+        'bearbeitet zu wenige Kür-Aufgaben des Wochenplans.',
+        'vergleicht die Aufgaben des Wochenplans nicht mit den Musterlösungen.',
+        'korrigiert die vorhandenen Fehler des Wochenplans nicht.',
+      ],
+    },
     // Gruppen werden nur in der Anwendung angezeigt; im PDF stehen alle Punkte untereinander.
     // Leere Gruppen bleiben unsichtbar, bis Stichpunkte eingetragen sind.
     fachlich: [
@@ -860,6 +918,17 @@ const SUBJECTS = {
   },
   französisch: {
     label: 'Französisch',
+    // zusätzliche überfachliche Fähigkeiten, die nur bei Französisch erscheinen
+    ueberfachlich: {
+      'Schwächen': [
+        'spricht sehr leise, so dass die Beiträge für das Unterrichtsgeschehen nur schwer nutzbar zu machen sind.',
+        'nimmt zu selten am Unterricht teil, wirkt aber mit anderen Dingen beschäftigt.',
+        'erledigt die Hausaufgaben nicht immer vollständig und mit der nötigen Sorgfalt. Die Materialien sind in keinem ordentlichen Zustand.',
+        'arbeitet sehr langsam und hat häufig erst das Heft aufgeschlagen, wenn andere schon fast fertig sind, und verpasst so den Anschluss.',
+        'nimmt zu wenig am Unterricht teil, wirkt häufig überfordert mit den Anforderungen und arbeitet zu langsam.',
+        'meldet sich von sich aus nicht. Beim Aufrufen fehlt häufig das Wissen, was zu tun ist. Somit dauert es sehr lange, um einen Beitrag zu formulieren.',
+      ],
+    },
     fachlich: [
       'hat aus dem 1. Lernjahr bereits einige Lücken und Mühe, neue Lerninhalte zu verstehen.',
       'hat Probleme beim Verfassen von Texten, diese sind häufig so fehlerhaft, dass der Sinn nicht zu erkennen ist.',
@@ -951,6 +1020,16 @@ const SUBJECTS = {
   },
   geographie: {
     label: 'Geographie',
+    // zusätzliche überfachliche Fähigkeiten, die nur bei Geographie erscheinen
+    ueberfachlich: {
+      'Stärken': [
+        'bringt mittlerweile verstärkt eigene Ideen im Unterrichtsgespräch ein.',
+        'kann bereits behandelte Inhalte nun öfter auch ohne Hilfe wiedergeben.',
+      ],
+      'Schwächen': [
+        'hat weiterhin Schwierigkeiten, (schriftliche) Aufgabenstellungen konkret umzusetzen.',
+      ],
+    },
     // Gruppen nur in der Anwendung; im PDF stehen alle Punkte untereinander. Leere Gruppen bleiben unsichtbar.
     fachlich: [
       { title: 'Stärken', items: [
@@ -1018,45 +1097,98 @@ const SUBJECTS = {
 };
 
 const SHARED = {
+  // Aufklappbare Gruppen nur in der Anwendung; im PDF stehen alle Punkte untereinander.
   ueberfachlich: [
-    'beteiligt sich aktiv und konstruktiv am Unterrichtsgespräch.',
-    'zeigt wenig Bereitschaft zur aktiven Mitarbeit im Unterricht.',
-    'erledigt Hausaufgaben regelmäßig und gewissenhaft.',
-    'vernachlässigt häufig die Hausaufgaben.',
-    'arbeitet im Unterricht konzentriert und ausdauernd.',
-    'ist häufig unkonzentriert und leicht ablenkbar.',
-    'ist regelmäßig mit den notwendigen Unterrichtsmaterialien vorbereitet.',
-    'erscheint häufig ohne die notwendigen Unterrichtsmaterialien.',
-    'zeigt Eigeninitiative und intrinsische Lernmotivation.',
-    'zeigt wenig Motivation für das schulische Lernen.',
-    'kooperiert gut und konstruktiv mit Mitschülerinnen und Mitschülern.',
-    'hat Schwierigkeiten beim selbstständigen Organisieren des Lernens.',
-    'stört häufig den Unterrichtsablauf.',
+    { title: 'Stärken', items: [
+      'beteiligt sich aktiv und konstruktiv am Unterrichtsgespräch.',
+      'erledigt Hausaufgaben regelmäßig und gewissenhaft.',
+      'arbeitet im Unterricht konzentriert und ausdauernd.',
+      'zeigt Eigeninitiative und intrinsische Lernmotivation.',
+      'kooperiert gut und konstruktiv mit Mitschülerinnen und Mitschülern.',
+      'stellt Fragen, um auftretende Probleme zu beheben.',
+      'bemüht sich um die Bearbeitung der gestellten Aufgaben.',
+      'ist im Unterricht aufmerksam.',
+    ] },
+    { title: 'Schwächen', items: [
+      'zeigt wenig Bereitschaft zur aktiven Mitarbeit im Unterricht.',
+      'ist häufig unkonzentriert und leicht ablenkbar.',
+      'erscheint häufig ohne die notwendigen Unterrichtsmaterialien.',
+      'zeigt wenig Motivation für das schulische Lernen.',
+      'hat Schwierigkeiten beim selbstständigen Organisieren des Lernens.',
+      'stört häufig den Unterrichtsablauf.',
+      'ist im Unterricht unaufmerksam/abgelenkt.',
+      'macht die Hausaufgaben unregelmäßig.',
+      'macht die Hausaufgaben unvollständig/nicht sorgfältig.',
+      'beteiligt sich nur selten am Unterrichtsgespräch.',
+      'beteiligt sich nicht am Unterrichtsgespräch.',
+      'nutzt die Möglichkeit zur Beteiligung am Unterricht zu wenig.',
+      'führt das Heft nicht sorgfältig.',
+      'bearbeitet Unterrichtsmaterialien nicht mit der nötigen Sorgfalt/Genauigkeit.',
+      'bearbeitet die Unterrichtsmaterialien nicht mit der nötigen Konzentration.',
+      'hat Schwierigkeiten, die Aussagen von Texten zu erfassen.',
+      'hat Schwierigkeiten, den Inhalt von Texten/Materialien in eigenen Worten wiederzugeben.',
+      'arbeitet zu oberflächlich.',
+      'verweigert die Mitarbeit.',
+      'hat ein sehr langsames Arbeitstempo.',
+      'fehlt häufig im Unterricht, wodurch die aktive Teilnahme am Unterrichtsgeschehen in der darauffolgenden Stunde erschwert wird.',
+    ] },
   ],
+
   schule: [
-    'Teilnahme an den schulinternen Förderangeboten im Fach.',
+    'Schreiben eines Förderplans.',
+    'Schreiben eines Lernplans zur Vorbereitung auf die Lernkontrollen.',
+    'Teilnahme an den schulischen Förderangeboten im Fach.',
     'Nutzung der Hausaufgabenbetreuung an der Schule.',
-    'Regelmäßige Fördergespräche mit der Fachlehrkraft.',
-    'Teilnahme am Trainingsraum zur Verbesserung des Arbeitsverhaltens.',
-    'Nutzung der Mediathek und schulischer Lernmaterialien.',
     'Beratung durch die Schulsozialarbeit bzw. den schulpsychologischen Dienst.',
+    'Vergabe von Referats-/Präsentationsthemen.',
+    'Führen eines individuellen Lern-/Feedbackgesprächs.',
+    'Vermitteln geeigneter Fördermaßnahmen (Förderkurse, Nachhilfe, Lernhilfe).',
+    'Empfehlung geeigneter Lektüre.',
+    'Empfehlung geeigneten Nachlernmaterials.',
+    'Teilnahme an der Intensivierungsstunde.',
+    'Besuch des Lernbüros.',
   ],
   eigen: [
     'den Unterrichtsstoff täglich wiederholen und nacharbeiten.',
     'zusätzliche Übungsaufgaben aus dem Schulbuch bearbeiten.',
     'geeignete Online-Lernplattformen nutzen (z.B. Bettermarks, Sofatutor, Anton).',
-    'Lernkarteikarten zu wichtigen Fachbegriffen und Inhalten anlegen.',
     'bei Unklarheiten gezielt Fragen im Unterricht stellen.',
     'sich einer Lerngruppe mit Mitschülerinnen und Mitschülern anschließen.',
     'feste tägliche Lernzeiten einplanen und konsequent einhalten.',
     'Mitschriften vollständig nacharbeiten und strukturiert ablegen.',
+    'regelmäßig im Unterricht mitarbeiten.',
+    'dem Unterricht aufmerksam folgen.',
+    'stets die Hausaufgaben sorgfältig anfertigen.',
+    'das Heft sorgfältig (mit allen Materialien) führen.',
+    'versäumten Stoff anhand des Schulbuches und der Aufzeichnungen nacharbeiten.',
+    'aufgetretene Wissenslücken durch eigenes Wiederholen schließen.',
+    'Unterrichtsergebnisse so lernen, dass sie im folgenden Unterricht genutzt werden können.',
+    'Fachbegriffe lernen.',
+    'Lernkarteikarten zu wichtigen Fachbegriffen und Inhalten anlegen.',
+    'die Aufgabenstellung sorgfältig lesen und auf die Aufgabenstellung achten.',
+    'lernen, sich über einen längeren Zeitraum zu konzentrieren.',
+    'sich auch bei weniger interessanten Unterrichtsthemen beteiligen.',
+    'Übungsphasen im Unterricht intensiver nutzen.',
+    'den Eltern laut erzählen, welche Inhalte im Unterricht behandelt wurden.',
+    'den Eltern berichten, welche Hausaufgaben erledigt werden müssen.',
+    'schwierige Texte nicht nur durchlesen, sondern auch Wichtiges markieren.',
+    'die häusliche Arbeitszeit sinnvoll einteilen und organisieren.',
+    'sich auf Klassenarbeiten/Lernkontrollen langfristig vorbereiten.',
+    'Unterrichtsstörungen unterlassen.',
+    'lernen, auch unter Zeitvorgabe zu arbeiten.',
+    'sich bei umfangreichen Aufgaben zumindest um Teillösungen bemühen.',
+    'fehlende Einträge im Regelheft bzw. Merkheft nachtragen.',
+    'Inhalte des Regelheftes bzw. Merkheftes nachvollziehen und auf andere Aufgaben übertragen.',
+    'regelmäßig bereits im Unterricht behandelte Aufgaben und Hausaufgaben wiederholend üben.',
   ],
   eltern: [
+    'Unterstützung bei der Bearbeitung der Hausaufgaben geben.',
+    'regelmäßig Kenntnis über die Bearbeitung der Wochenpläne nehmen.',
     'auf eine ruhige und strukturierte Lernumgebung achten.',
-    'regelmäßig Vollständigkeit und Qualität der Hausaufgaben kontrollieren.',
+    'regelmäßig die Vollständigkeit und Qualität der Hausaufgaben kontrollieren.',
     'bei schulischen Problemen frühzeitig Kontakt mit der Lehrkraft aufnehmen.',
     'eine qualifizierte Nachhilfekraft beauftragen.',
-    'die Lernorganisation ihres Kindes aktiv unterstützen (Lernplan, Lernmittel).',
+    'die Lernorganisation ihres Kindes aktiv unterstützen (Lernplan, Lernmittel, …).',
     'auf ausreichend Schlaf und gesunde Ernährung achten.',
   ],
 };
@@ -1066,6 +1198,7 @@ const SHARED = {
 // ════════════════════════════════════════════════
 const state = {
   fach: null,
+  open: {},   // welche Gruppen aufgeklappt sind
   sel: { fachlich: new Set(), ueberfachlich: new Set(), schule: new Set(), eigen: new Set(), eltern: new Set() },
 };
 
@@ -1077,7 +1210,9 @@ function init() {
   document.getElementById('schuljahr').value = '2026/2027';
 
   const grid = document.getElementById('fach-grid');
-  Object.entries(SUBJECTS).forEach(([k, v]) => {
+  Object.entries(SUBJECTS)
+    .sort((a, b) => (a[1].short || a[1].label).localeCompare(b[1].short || b[1].label, 'de'))
+    .forEach(([k, v]) => {
     const b = document.createElement('button');
     b.className = 'fach-btn';
     b.textContent = v.short || v.label;
@@ -1096,6 +1231,19 @@ function init() {
 function selectFach(k, btn) {
   state.fach = k;
   state.sel.fachlich.clear();
+  const keep = new Set(Object.values(SUBJECTS[k].ueberfachlich || {}).flat());
+  Object.entries(SUBJECTS).forEach(([key, v]) => {
+    if (key === k || !v.ueberfachlich) return;
+    Object.values(v.ueberfachlich).flat().forEach(t => { if (!keep.has(t)) state.sel.ueberfachlich.delete(t); });
+  });
+  ['schule', 'eigen', 'eltern'].forEach(key => {
+    const allE = (e) => [...((e || {})[key] || []), ...Object.values(((e || {}).sub || {})[key] || {}).flat()];
+    const keepE = new Set(allE(SUBJECTS[k].empf));
+    Object.entries(SUBJECTS).forEach(([sk, v]) => {
+      if (sk === k) return;
+      allE(v.empf).forEach(t => { if (!keepE.has(t)) state.sel[key].delete(t); });
+    });
+  });
   document.querySelectorAll('.fach-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   buildBeob(k);
@@ -1117,6 +1265,7 @@ const CUSTOM_PH = {
 function updateCount(key) {
   const cnt = document.getElementById('cnt-' + key);
   if (cnt) cnt.textContent = state.sel[key].size;
+  if (state.sel[key].size) document.getElementById('tl-' + key)?.closest('.tag-sec')?.classList.remove('missing');
   const wrap = document.getElementById('tl-' + key);
   if (wrap) wrap.querySelectorAll('details.tag-grp').forEach(d => {
     const n = d.querySelectorAll('.tag.sel').length;
@@ -1164,12 +1313,15 @@ function buildTagSection(label, key, items, container) {
       list.className = 'tag-subs';
       g.sub.forEach(sg => {
         if (!sg.items.length) return;
-        const hd = document.createElement('div');
-        hd.className = 'tag-sub-hd'; hd.textContent = sg.title;
+        if (sg.title) {
+          const hd = document.createElement('div');
+          hd.className = 'tag-sub-hd'; hd.textContent = sg.title;
+          list.append(hd);
+        }
         const sl = document.createElement('div');
         sl.className = 'tag-list';
         sg.items.forEach(text => mkTag(text, sl));
-        list.append(hd, sl);
+        list.append(sl);
       });
     } else {
       list.className = 'tag-list';
@@ -1178,7 +1330,9 @@ function buildTagSection(label, key, items, container) {
     if (g.title) {
       const det = document.createElement('details');
       det.className = 'tag-grp';
-      if (first || g.items.some(t => state.sel[key].has(t))) det.open = true;
+      const gid = `${key}|${g.title}`;
+      det.open = !!state.open[gid];
+      det.addEventListener('toggle', () => { state.open[gid] = det.open; });
       const sum = document.createElement('summary');
       sum.innerHTML = `<span>${g.title}</span><span class="grp-cnt"></span>`;
       det.append(sum, list);
@@ -1230,17 +1384,37 @@ function buildBeob(k) {
   c.innerHTML = '';
   buildTagSection('(1) Fachliche Fähigkeiten', 'fachlich', SUBJECTS[k].fachlich, c);
   const d = document.createElement('div'); d.className = 'divider'; c.appendChild(d);
-  buildTagSection('(2) Überfachliche Fähigkeiten', 'ueberfachlich', SHARED.ueberfachlich, c);
+  buildTagSection('(2) Überfachliche Fähigkeiten', 'ueberfachlich', ueberfachlichFor(k), c);
+}
+
+// Gemeinsame überfachliche Liste + fachspezifische Ergänzungen (z. B. Geographie)
+function ueberfachlichFor(k) {
+  const extra = SUBJECTS[k].ueberfachlich || {};
+  const groups = SHARED.ueberfachlich.map(g => ({ title: g.title, items: [...g.items, ...(extra[g.title] || [])] }));
+  // Kategorien, die es nur bei diesem Fach gibt (z. B. „GTK“), als weitere Gruppe anhängen
+  Object.keys(extra).filter(t => !groups.some(g => g.title === t)).forEach(t => groups.push({ title: t, items: [...extra[t]] }));
+  return groups;
 }
 
 function buildEmpf() {
   const c = document.getElementById('body-empf');
   c.innerHTML = '';
-  buildTagSection('(A) Förderung durch die Schule', 'schule', SHARED.schule, c);
+  // Bausteine jeweils in einer aufklappbaren Gruppe (zu Beginn zugeklappt)
+  const grp = (items) => [{ title: 'Textbausteine', items }];
+  // gemeinsame Bausteine + fachspezifische Ergänzungen (z. B. Matheinsel)
+  const extra = (state.fach && SUBJECTS[state.fach].empf) || {};
+  const list = (key) => [...SHARED[key], ...(extra[key] || [])];
+  const grpX = (key) => {
+    const subs = (extra.sub || {})[key];
+    if (!subs) return grp(list(key));
+    return [{ title: 'Textbausteine', sub: [{ title: null, items: list(key) },
+      ...Object.entries(subs).map(([t, it]) => ({ title: t, items: it }))] }];
+  };
+  buildTagSection('(A) Förderung durch die Schule', 'schule', grpX('schule'), c);
   let d = document.createElement('div'); d.className = 'divider'; c.appendChild(d);
-  buildTagSection('(B) Förderung durch Eigeninitiative', 'eigen', SHARED.eigen, c);
+  buildTagSection('(B) Förderung durch Eigeninitiative', 'eigen', grpX('eigen'), c);
   d = document.createElement('div'); d.className = 'divider'; c.appendChild(d);
-  buildTagSection('(C) Förderung durch die Eltern', 'eltern', SHARED.eltern, c);
+  buildTagSection('(C) Förderung durch die Eltern', 'eltern', grpX('eltern'), c);
 }
 
 function toggleTag(key, text, el) {
@@ -1259,6 +1433,11 @@ function toggleTag(key, text, el) {
 //  FORM DATA HELPER
 // ════════════════════════════════════════════════
 function gv(id) { return document.getElementById(id).value.trim(); }
+
+['input', 'change'].forEach(ev => document.addEventListener(ev, e => {
+  const fg = e.target.closest && e.target.closest('.fg.missing');
+  if (fg && e.target.value && e.target.value.trim()) fg.classList.remove('missing');
+}));
 
 function getFormData() {
   const vn = gv('vorname') || '[Vorname]';
@@ -1425,7 +1604,7 @@ let resizeTimer = null;
 window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(updatePreview, 150); });
 
 function buildDocHTML(d, fL, uL, sL, eL, elL) {
-  const gw = n => GRADE_WORDS[n] || '–';
+  const gw = n => GRADE_WORDS[String(n).charAt(0)] || '–';
   const info = [['Vorname', d.vn], ['Name', d.nn], ['Klasse', d.kl], ['Schuljahr', d.sj],
                 ['Fach', d.fach], ['Lehrkraft', d.lk], ['Datum', d.dt]]
     .map(([l, v]) => `<div><span>${l}</span><b>${v}</b></div>`).join('');
@@ -1552,9 +1731,10 @@ function buildPDF(d, L, target) {
 
   function heading(num, title) {
     gap(8.5); need(22);
-    doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]);
-    doc.circle(M + 3.4, y - 1.3, 3.4, 'F');
-    font('bold', 9); tc(WHITE);
+    doc.setFillColor(GOLDL[0], GOLDL[1], GOLDL[2]);
+    doc.setDrawColor(GOLD[0], GOLD[1], GOLD[2]); doc.setLineWidth(0.4);
+    doc.circle(M + 3.4, y - 1.3, 3.4, 'FD');
+    font('bold', 9); tc(NAVY);
     doc.text(String(num), M + 3.4, y - 0.1, { align: 'center' });
     font('bold', 12); tc(NAVY);
     doc.text(pdfSafe(title), M + 10, y);
@@ -1581,22 +1761,23 @@ function buildPDF(d, L, target) {
   }
 
   // ═══════════ SEITE 1: Briefkopf ═══════════
-  box(0, 0, 210, 31, NAVY);
-  box(0, 31, 210, 1.4, GOLD);
+  // druckfreundlich: keine vollflächigen Farbbalken
   drawLogo(M, 6.5, 18, GOLD);
   const TX = M + logoW(18) + 7;
-  doc.setDrawColor(60, 85, 112); doc.setLineWidth(0.3);
+  doc.setDrawColor(LINE[0], LINE[1], LINE[2]); doc.setLineWidth(0.3);
   doc.line(TX - 3.5, 8.5, TX - 3.5, 23.5);
-  font('normal', 8); tc(PALE);
+  font('normal', 8); tc(GREY);
   doc.text('Gymnasium der Stadt Offenbach', TX, 11.5);
-  font('bold', 14); tc(WHITE);
+  font('bold', 14); tc(NAVY);
   doc.text('Leibnizschule Offenbach', TX, 18);
-  font('italic', 8.5); tc(GOLDT);
+  font('italic', 8.5); tc(GOLD);
   doc.text("Wir wollen's wissen", TX, 24);
-  font('bold', 16); tc(WHITE);
+  font('bold', 16); tc(NAVY);
   doc.text(pdfSafe('Individueller Fachförderplan'), M + W, 16, { align: 'right' });
-  font('bold', 10); tc(GOLDT);
+  font('bold', 10); tc(GOLD);
   doc.text(pdfSafe(`${d.fach}   |   Schuljahr ${d.sj}`), M + W, 23, { align: 'right' });
+  doc.setDrawColor(GOLD[0], GOLD[1], GOLD[2]); doc.setLineWidth(0.8);
+  doc.line(M, 30.5, M + W, 30.5);
 
   y = 38.5;
   font('normal', 7.5); tc(GREY);
@@ -1640,7 +1821,7 @@ function buildPDF(d, L, target) {
     box(gx, y, gw, gh, LIGHT, 2.5);
     box(gx, y + 3, 1.4, gh - 6, GOLD);
     font('normal', 8); tc(GREY); doc.text(lab, gx + 7, y + 6.3);
-    font('bold', 11); tc(NAVY); doc.text(pdfSafe(GRADE_WORDS[n] || '-'), gx + 7, y + 11.8);
+    font('bold', 11); tc(NAVY); doc.text(pdfSafe(GRADE_WORDS[String(n).charAt(0)] || '-'), gx + 7, y + 11.8);
     font('bold', 22); tc(NAVY); doc.text(String(n), gx + gw - 8, y + 11.8, { align: 'right' });
   });
   y += gh + 4.5;
@@ -1685,7 +1866,7 @@ function buildPDF(d, L, target) {
   font('bold', 9.5);   const nLines = doc.splitTextToSize(noteTxt, W - 14).length;
   font('normal', 10);  const rLines = doc.splitTextToSize(pdfSafe(rcptTxt), W).length;
   font('normal', 9.5); const sLines = doc.splitTextToSize(pdfSafe(stTxt), W).length;
-  const restH = (nLines * 4.7 + 7) + 9 + rLines * 5 + 6 + 18 + 3 + sLines * 4.8 + 5 + 38.5 + 3;   // angehängt: etwas engerer Abstand zu den Unterschriften
+  const restH = (nLines * 4.7 + 7) + 9 + rLines * 5 + 6 + 18 + 3 + sLines * 4.8 + 10 + 38.5 + 3;   // angehängt: etwas engerer Abstand zu den Unterschriften
   const INLINE_HEAD = 33, BOX_MAX = 62, BOX_MIN = 35;
   const avail = BOTTOM - y - INLINE_HEAD;
   const inline = !BR.rueck && avail >= restH + BOX_MIN;
@@ -1694,22 +1875,22 @@ function buildPDF(d, L, target) {
 
   if (inline) {
     gap(10);
-    box(M, y, W, 15, NAVY, 2.5);
-    box(M, y + 13.8, W, 1.2, GOLD);
-    font('bold', 12.5); tc(WHITE);
-    doc.text(pdfSafe('Rückmeldung an die Fachlehrkraft'), M + 6, y + 7);
-    font('normal', 8.5); tc(GOLDT);
-    doc.text(pdfSafe(`${d.vn} ${d.nn}   |   Klasse ${d.kl}   |   ${d.fach}`), M + 6, y + 11.6);
+    box(M, y, W, 15, LIGHT, 2.5);
+    box(M, y, 1.6, 15, GOLD);
+    font('bold', 12.5); tc(NAVY);
+    doc.text(pdfSafe('Rückmeldung an die Fachlehrkraft'), M + 7, y + 7);
+    font('normal', 8.5); tc(GOLD);
+    doc.text(pdfSafe(`${d.vn} ${d.nn}   |   Klasse ${d.kl}   |   ${d.fach}`), M + 7, y + 11.6);
     y += 15 + 8;
   } else {
     doc.addPage();
     retPage = doc.getNumberOfPages();
-    box(0, 0, 210, 24, NAVY);
-    box(0, 24, 210, 1.2, GOLD);
-    font('bold', 14); tc(WHITE);
+    font('bold', 14); tc(NAVY);
     doc.text(pdfSafe('Rückmeldung an die Fachlehrkraft'), M, 13);
-    font('normal', 8.5); tc(GOLDT);
+    font('normal', 8.5); tc(GOLD);
     doc.text(pdfSafe(`${d.vn} ${d.nn}   |   Klasse ${d.kl}   |   ${d.fach}`), M, 19);
+    doc.setDrawColor(GOLD[0], GOLD[1], GOLD[2]); doc.setLineWidth(0.8);
+    doc.line(M, 23.5, M + W, 23.5);
     y = 34;
   }
 
@@ -1737,7 +1918,7 @@ function buildPDF(d, L, target) {
   gap(3);
 
   rich([[stTxt, 'normal', GREY]], M, W, 9.5, 4.8);
-  gap(2);
+  gap(7);
   font('bold', 10.5); tc(NAVY); doc.text('Stellungnahme', M, y);
   y += 3;
   box(M, y, W, boxH, WHITE, 2.5, LINE, 0.4);
@@ -1762,12 +1943,12 @@ function buildPDF(d, L, target) {
   for (let i = 1; i <= n; i++) {
     doc.setPage(i);
     if (i > 1 && i !== retPage) {
-      box(0, 0, 210, 12, NAVY);
-      box(0, 12, 210, 0.8, GOLD);
-      font('bold', 9); tc(WHITE);
-      doc.text(pdfSafe('Individueller Fachförderplan (Fortsetzung)'), M, 7.8);
-      font('normal', 8.5); tc(GOLDT);
-      doc.text(pdfSafe(`${d.vn} ${d.nn}  |  ${d.fach}`), M + W, 7.8, { align: 'right' });
+      font('bold', 9); tc(NAVY);
+      doc.text(pdfSafe('Individueller Fachförderplan (Fortsetzung)'), M, 10);
+      font('normal', 8.5); tc(GOLD);
+      doc.text(pdfSafe(`${d.vn} ${d.nn}  |  ${d.fach}`), M + W, 10, { align: 'right' });
+      doc.setDrawColor(GOLD[0], GOLD[1], GOLD[2]); doc.setLineWidth(0.5);
+      doc.line(M, 13, M + W, 13);
     }
     doc.setDrawColor(NAVY[0], NAVY[1], NAVY[2]); doc.setLineWidth(0.3);
     doc.line(M, 283, M + W, 283);
@@ -1803,7 +1984,45 @@ function openPdf() {
   }
 }
 
+const CAT_NAMES = {
+  fachlich: 'Beobachtungen › (1) Fachliche Fähigkeiten',
+  ueberfachlich: 'Beobachtungen › (2) Überfachliche Fähigkeiten',
+  schule: 'Empfehlungen › (A) Förderung durch die Schule',
+  eigen: 'Empfehlungen › (B) Förderung durch Eigeninitiative',
+  eltern: 'Empfehlungen › (C) Förderung durch die Eltern',
+};
+
+function checkCategories() {
+  document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
+  if (!state.fach) { alert('Bitte wählen Sie zuerst ein Fach aus.'); document.getElementById('fach-grid').scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
+  const list = [];
+  const mark = (el, msg) => { const fg = el.closest('.fg'); fg.dataset.msg = msg; fg.classList.add('missing'); };
+  // Schüler/innen- und Lehrkraft-Daten
+  [['vorname', 'Vorname'], ['nachname', 'Nachname'], ['klasse', 'Klasse'], ['schuljahr', 'Schuljahr'],
+   ['lehrkraft', 'Lehrkraft'], ['kuerzel', 'Kürzel'], ['datum', 'Datum']].forEach(([id, name]) => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { mark(el, 'Bitte ausfüllen'); list.push('Daten › ' + name); }
+  });
+  // Noten
+  [['ns', 'Note schriftlich'], ['nm', 'Note mündlich']].forEach(([id, name]) => {
+    const sel = document.getElementById(id);
+    if (!sel.value) { mark(sel, 'Bitte Note auswählen'); list.push('Leistungsstand › ' + name); }
+  });
+  // Bausteine
+  Object.keys(CAT_NAMES).filter(k => state.sel[k].size === 0).forEach(k => {
+    const sec = document.getElementById('tl-' + k)?.closest('.tag-sec');
+    if (sec) sec.classList.add('missing');
+    list.push(CAT_NAMES[k]);
+  });
+  if (!list.length) return true;
+  alert('Bitte füllen Sie noch die rot markierten Bereiche aus: alle Schüler/innen- und Lehrkraft-Daten, beide Noten und in jeder Kategorie mindestens einen Baustein (oder einen eigenen Stichpunkt).\n\nNoch offen:\n• ' + list.join('\n• '));
+  const first = document.querySelector('.missing');
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+
 function generatePDF() {
+  if (!checkCategories()) return;
   const btn = document.getElementById('btn-pdf');
   const spin = document.getElementById('pdf-spin');
   btn.style.display = 'none';
@@ -1867,12 +2086,13 @@ function closePdfModal() {
 function resetForm() {
   if (!confirm('Formular wirklich zurücksetzen?')) return;
   state.fach = null;
+  state.open = {};
   Object.values(state.sel).forEach(s => s.clear());
   ['vorname','nachname','klasse','lehrkraft','kuerzel'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('datum').value = new Date().toISOString().slice(0,10);
   document.getElementById('schuljahr').value = '2026/2027';
-  document.getElementById('ns').value = '5';
-  document.getElementById('nm').value = '4';
+  document.getElementById('ns').value = '';
+  document.getElementById('nm').value = '';
   document.querySelectorAll('[data-brk]').forEach(c => { c.checked = false; });
   document.querySelectorAll('.fach-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('body-beob').innerHTML = `<div class="empty-hint"><p>Bitte zuerst ein Fach auswählen</p></div>`;
