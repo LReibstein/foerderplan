@@ -344,7 +344,7 @@ input:focus,select:focus{outline:none;border-color:var(--navy)}
       </div>
     </div>
 
-    <div class="app-version">Version 3.1 · Stand 07.11.2026</div>
+    <div class="app-version">Version 3.2 · Stand 07.11.2026</div>
   </div>
 
   <!-- ═══ PREVIEW COLUMN ═══ -->
@@ -797,6 +797,40 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 //  DATA
 // ════════════════════════════════════════════════
 
+// Gemeinsame Bausteine für die Fremdsprachen Englisch, Französisch und Spanisch (nicht Latein)
+const FREMDSPRACHEN = {
+  staerken: [
+    'hat eine angemessene Aussprache.',
+    'verfügt über einen Grundwortschatz.',
+    'kann den Inhalt von Texten in der Fremdsprache in Ansätzen verstehen.',
+  ],
+  schwaechen: [
+    'hat große Lücken im Bereich Grammatik.',
+    'hat Probleme bei der Bildung und Anwendung von Zeiten.',
+    'hat Schwierigkeiten bei der korrekten Bildung und Anwendung von Adjektiven und Adverbien.',
+    'zeigt Schwächen in der Rechtschreibung.',
+    'hat keine ausreichenden Vokabelkenntnisse.',
+    'kann sich in der Fremdsprache nicht angemessen ausdrücken.',
+    'hat Probleme mit der korrekten Aussprache.',
+    'hat große Schwierigkeiten in allen Bereichen der Fremdsprache: Grammatik, Wortschatz und Aussprache.',
+    'hat Schwierigkeiten beim Leseverstehen.',
+    'hat Schwierigkeiten beim Hörverstehen.',
+    'hat Schwierigkeiten beim Hör-/Leseverstehen.',
+    'hat Probleme bei der Textproduktion.',
+    'kann ausschließlich reproduktive Aufgaben lösen.',
+  ],
+  empf: {
+    eigen: [
+      'gelernte Vokabeln regelmäßig wiederholen.',
+      'die Aussprache mithilfe der verfügbaren Audiodateien regelmäßig üben.',
+    ],
+    eltern: [
+      'Vokabeln regelmäßig abfragen (mündlich und schriftlich).',
+      'sich die gelernten Inhalte durch das Kind erklären lassen.',
+    ],
+  },
+};
+
 const SUBJECTS = {
   mathematik: {
     label: 'Mathematik',
@@ -914,7 +948,11 @@ const SUBJECTS = {
   },
   englisch: {
     label: 'Englisch',
-    fachlich: [],
+    fachlich: [
+      { title: 'Stärken', items: [...FREMDSPRACHEN.staerken] },
+      { title: 'Schwächen', items: [...FREMDSPRACHEN.schwaechen] },
+    ],
+    empf: FREMDSPRACHEN.empf,
   },
   französisch: {
     label: 'Französisch',
@@ -930,12 +968,16 @@ const SUBJECTS = {
       ],
     },
     fachlich: [
-      'hat aus dem 1. Lernjahr bereits einige Lücken und Mühe, neue Lerninhalte zu verstehen.',
-      'hat Probleme beim Verfassen von Texten, diese sind häufig so fehlerhaft, dass der Sinn nicht zu erkennen ist.',
-      'beteiligt sich zwar am Unterricht, reiht in den Beiträgen jedoch ausschließlich französische Wörter aneinander, so dass die Beiträge für den Unterricht nicht nutzbar sind.',
-      'hat große Lücken in allen Bereichen (Aussprache, Grammatik, Vokabular), weshalb die Beiträge so fehlerhaft sind, dass sie für den Unterricht nicht nutzbar sind und die Korrektur sehr viel Zeit in Anspruch nimmt.',
-      'zeigt im Vergleich zum Rest der Klasse eine schwache Aussprache.',
+      { title: 'Stärken', items: [...FREMDSPRACHEN.staerken] },
+      { title: 'Schwächen', items: [...FREMDSPRACHEN.schwaechen,
+        'hat aus dem 1. Lernjahr bereits einige Lücken und Mühe, neue Lerninhalte zu verstehen.',
+        'hat Probleme beim Verfassen von Texten, diese sind häufig so fehlerhaft, dass der Sinn nicht zu erkennen ist.',
+        'beteiligt sich zwar am Unterricht, reiht in den Beiträgen jedoch ausschließlich französische Wörter aneinander, so dass die Beiträge für den Unterricht nicht nutzbar sind.',
+        'hat große Lücken in allen Bereichen (Aussprache, Grammatik, Vokabular), weshalb die Beiträge so fehlerhaft sind, dass sie für den Unterricht nicht nutzbar sind und die Korrektur sehr viel Zeit in Anspruch nimmt.',
+        'zeigt im Vergleich zum Rest der Klasse eine schwache Aussprache.',
+      ] },
     ],
+    empf: FREMDSPRACHEN.empf,
   },
   latein: {
     label: 'Latein',
@@ -943,7 +985,11 @@ const SUBJECTS = {
   },
   spanisch: {
     label: 'Spanisch',
-    fachlich: [],
+    fachlich: [
+      { title: 'Stärken', items: [...FREMDSPRACHEN.staerken] },
+      { title: 'Schwächen', items: [...FREMDSPRACHEN.schwaechen] },
+    ],
+    empf: FREMDSPRACHEN.empf,
   },
   biologie: {
     label: 'Biologie',
@@ -1131,6 +1177,8 @@ const SHARED = {
       'verweigert die Mitarbeit.',
       'hat ein sehr langsames Arbeitstempo.',
       'fehlt häufig im Unterricht, wodurch die aktive Teilnahme am Unterrichtsgeschehen in der darauffolgenden Stunde erschwert wird.',
+      'erscheint häufig verspätet zum Unterricht.',
+      'bereitet sich nicht ausreichend auf Tests und Klassenarbeiten vor.',
     ] },
   ],
 
